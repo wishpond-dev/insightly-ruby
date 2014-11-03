@@ -10,7 +10,7 @@ describe Insightly::Resources::FileAttachment do
 
   # subject(:file_attachment) do
     # VCR.use_cassette('get_email_comments') do
-    #   comments = Insightly.client.get_email_comments(id: 17683283)
+    #   comments = client.get_email_comments(id: 17683283)
     #   comment = comments.last
     #   file_attachment = comment['FILE_ATTACHMENTS'].last
     #   FileAttachment.parse(file_attachment)

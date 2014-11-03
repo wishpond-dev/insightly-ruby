@@ -15,7 +15,7 @@ module Insightly
     HEADERS = {'Accept' => 'application/json', 'Content-Type' => 'application/json'}
 
     # @param [String] api_key
-    def initialize(api_key = Insightly.api_key)
+    def initialize(api_key)
       @api_key = api_key
 
       # Setup HTTP request connection to insightly.

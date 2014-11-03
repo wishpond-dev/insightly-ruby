@@ -7,7 +7,7 @@ describe Insightly::DSL::Organisations do
   describe '#get_organisation' do
     it 'returns an organisation' do
       VCR.use_cassette('get_organisation') do
-        expect(Insightly.client.get_organisation(id: organisation_id)).to be_a(Organisation)
+        expect(client.get_organisation(id: organisation_id)).to be_a(Organisation)
       end
     end
   end
@@ -16,7 +16,7 @@ describe Insightly::DSL::Organisations do
   describe '#get_organisation_emails' do
     it 'returns organisation emails' do
       VCR.use_cassette('get_organisation_emails') do
-        response = Insightly.client.get_organisation_emails(id: organisation_id)
+        response = client.get_organisation_emails(id: organisation_id)
         expect(response).to be_a(Array)
         expect(response.first).to be_a(Email)
       end
@@ -27,7 +27,7 @@ describe Insightly::DSL::Organisations do
   # describe '#get_organisation_image' do
   #   it 'returns organisation image' do
   #     VCR.use_cassette('get_organisation_image') do
-  #       response = Insightly.client.get_organisation_image(id: organisation_id)
+  #       response = client.get_organisation_image(id: organisation_id)
   #       #expect(response.status).to eq(200)
   #       # TODO - Insightly server error with default organisation image they should fix this.
   #     end
@@ -38,7 +38,7 @@ describe Insightly::DSL::Organisations do
   describe '#get_organisation_notes' do
     it 'returns organisation notes' do
       VCR.use_cassette('get_organisation_notes') do
-        response = Insightly.client.get_organisation_notes(id: organisation_id)
+        response = client.get_organisation_notes(id: organisation_id)
         expect(response).to be_a(Array)
         expect(response.first).to be_a(Note)
       end
@@ -49,7 +49,7 @@ describe Insightly::DSL::Organisations do
   describe '#get_organisation_tasks' do
     it 'returns organisation tasks' do
       VCR.use_cassette('get_organisation_tasks') do
-        response = Insightly.client.get_organisation_tasks(id: organisation_id)
+        response = client.get_organisation_tasks(id: organisation_id)
         expect(response).to be_a(Array)
         expect(response.first).to be_a(Task)
       end
@@ -60,7 +60,7 @@ describe Insightly::DSL::Organisations do
   describe '#get_organisations' do
     it 'returns an array of organisations' do
       VCR.use_cassette('get_organisations') do
-        organisations = Insightly.client.get_organisations
+        organisations = client.get_organisations
         expect(organisations).to be_a(Array)
         expect(organisations.first).to be_a(Organisation)
       end
@@ -71,8 +71,8 @@ describe Insightly::DSL::Organisations do
   describe '#create_organisation' do
     it 'creates and returns organisation' do
       VCR.use_cassette('create_organisation') do
-        organisation = Insightly.client.get_organisation(id: organisation_id)
-        expect(Insightly.client.create_organisation(organisation: organisation)).to be_a(Organisation)
+        organisation = client.get_organisation(id: organisation_id)
+        expect(client.create_organisation(organisation: organisation)).to be_a(Organisation)
       end
     end
   end
@@ -81,7 +81,7 @@ describe Insightly::DSL::Organisations do
   # describe '#create_organisation_image' do
   #   it 'returns a response with code 201' do
   #     VCR.use_cassette('create_organisation_image') do
-  #       response = Insightly.client.create_organisation_image(id: organisation_id, filename: '1.jpg')
+  #       response = client.create_organisation_image(id: organisation_id, filename: '1.jpg')
   #       #expect(response.status).to eq(201)
   #       # TODO - Can't add image. Not sure why.
   #     end
@@ -92,8 +92,8 @@ describe Insightly::DSL::Organisations do
   describe '#update_organisation' do
     it 'updates and returns organisation' do
       VCR.use_cassette('update_organisation') do
-        organisation = Insightly.client.get_organisation(id: organisation_id)
-        expect(Insightly.client.update_organisation(organisation: organisation)).to be_a(Organisation)
+        organisation = client.get_organisation(id: organisation_id)
+        expect(client.update_organisation(organisation: organisation)).to be_a(Organisation)
       end
     end
   end
@@ -102,7 +102,7 @@ describe Insightly::DSL::Organisations do
   # describe '#update_organisation_image' do
   #   it 'returns a response with code 201' do
   #     VCR.use_cassette('update_organisation_image') do
-  #       response = Insightly.client.update_organisation_image(id: organisation_id, filename: '1.jpg')
+  #       response = client.update_organisation_image(id: organisation_id, filename: '1.jpg')
   #       #expect(response.status).to eq(201)
   #       # TODO - Can't update image. Not sure why.
   #     end
@@ -113,7 +113,7 @@ describe Insightly::DSL::Organisations do
   describe '#delete_organisation' do
     it 'returns a response with code 202' do
       VCR.use_cassette('delete_organisation') do
-        response = Insightly.client.delete_organisation(id: organisation_id)
+        response = client.delete_organisation(id: organisation_id)
         expect(response.status).to eq(202)
       end
     end
@@ -123,7 +123,7 @@ describe Insightly::DSL::Organisations do
   describe '#delete_organisation_image' do
     it 'returns a response with code 202' do
       VCR.use_cassette('delete_organisation_image') do
-        response = Insightly.client.delete_organisation_image(id: organisation_id)
+        response = client.delete_organisation_image(id: organisation_id)
         expect(response.status).to eq(202)
       end
     end

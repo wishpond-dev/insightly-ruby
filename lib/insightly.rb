@@ -13,10 +13,9 @@ module Insightly
     attr_accessor :logger
   end
 
-  module_function
-
   # @return [Insightly::Client]
-  def client
-    @client ||= Client.new(Insightly.api_key)
+  def new(api_key)
+    Client.new(api_key)
   end
+
 end

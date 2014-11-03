@@ -8,7 +8,7 @@ describe Insightly::DSL::TeamMembers do
   describe '#get_team_member' do
     it 'returns a team member' do
       VCR.use_cassette('get_team_member') do
-        expect(Insightly.client.get_team_member(id: team_member_id)).to be_a(TeamMember)
+        expect(client.get_team_member(id: team_member_id)).to be_a(TeamMember)
       end
     end
   end
@@ -17,7 +17,7 @@ describe Insightly::DSL::TeamMembers do
   describe '#get_team_members' do
     it 'returns an array of team_members' do
       VCR.use_cassette('get_team_members') do
-        team_members = Insightly.client.get_team_members(team_id: team_id)
+        team_members = client.get_team_members(team_id: team_id)
         expect(team_members).to be_a(Array)
         expect(team_members.first).to be_a(TeamMember)
       end
@@ -28,8 +28,8 @@ describe Insightly::DSL::TeamMembers do
   describe '#create_team_member' do
     it 'creates and returns a team_member' do
       VCR.use_cassette('create_team_member') do
-        team_member = Insightly.client.get_team_member(id: team_member_id)
-        expect(Insightly.client.create_team_member(team_member: team_member)).to be_a(TeamMember)
+        team_member = client.get_team_member(id: team_member_id)
+        expect(client.create_team_member(team_member: team_member)).to be_a(TeamMember)
       end
     end
   end
@@ -38,8 +38,8 @@ describe Insightly::DSL::TeamMembers do
   describe '#update_team_member' do
     it 'updates and returns a team_member' do
       VCR.use_cassette('update_team_member') do
-        team_member = Insightly.client.get_team_member(id: team_member_id)
-        expect(Insightly.client.update_team_member(team_member: team_member)).to be_a(TeamMember)
+        team_member = client.get_team_member(id: team_member_id)
+        expect(client.update_team_member(team_member: team_member)).to be_a(TeamMember)
       end
     end
   end
@@ -48,7 +48,7 @@ describe Insightly::DSL::TeamMembers do
   describe '#delete_team_member' do
     it 'returns a response with code 202' do
       VCR.use_cassette('delete_team_member') do
-        response = Insightly.client.delete_team_member(id: team_member_id)
+        response = client.delete_team_member(id: team_member_id)
         expect(response.status).to eq(202)
       end
     end

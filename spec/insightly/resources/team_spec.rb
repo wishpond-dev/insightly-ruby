@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Insightly::Resources::Team do
   subject(:team) do
     VCR.use_cassette('get_team') do
-      Insightly.client.get_team(id: 2063767)
+      client.get_team(id: 2063767)
     end
   end
 

@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Insightly::Resources::CustomField do
   subject(:custom_field) do
     VCR.use_cassette('get_custom_field') do
-      Insightly.client.get_custom_field(id: 'CONTACT_FIELD_1')
+      client.get_custom_field(id: 'CONTACT_FIELD_1')
     end
   end
 

@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Insightly::Resources::User do
   subject(:user) do
     VCR.use_cassette('get_user') do
-      Insightly.client.get_user(id: 607181)
+      client.get_user(id: 607181)
     end
   end
 
