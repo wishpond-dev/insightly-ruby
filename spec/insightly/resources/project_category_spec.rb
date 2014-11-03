@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Insightly::Resources::ProjectCategory do
   subject(:project_category) do
     VCR.use_cassette('get_project_category') do
-      client.get_project_category(id: 1947441)
+      client.get_project_category(1947441)
     end
   end
 

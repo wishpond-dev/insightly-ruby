@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Insightly::Resources::Comment do
   subject(:comment) do
     VCR.use_cassette('get_comment') do
-      client.get_comment(id: 3469515)
+      client.get_comment(3469515)
     end
   end
 

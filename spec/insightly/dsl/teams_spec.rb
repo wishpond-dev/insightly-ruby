@@ -7,7 +7,7 @@ describe Insightly::DSL::Teams do
   describe '#get_team' do
     it 'returns a team' do
       VCR.use_cassette('get_team') do
-        expect(client.get_team(id: team_id)).to be_a(Team)
+        expect(client.get_team(team_id)).to be_a(Team)
       end
     end
   end
@@ -27,8 +27,8 @@ describe Insightly::DSL::Teams do
   describe '#create_team' do
     it 'creates and returns a team' do
       VCR.use_cassette('create_team') do
-        team = client.get_team(id: team_id)
-        expect(client.create_team(team: team)).to be_a(Team)
+        team = client.get_team(team_id)
+        expect(client.create_team(team)).to be_a(Team)
       end
     end
   end
@@ -37,8 +37,8 @@ describe Insightly::DSL::Teams do
   describe '#update_team' do
     it 'updates and returns a team' do
       VCR.use_cassette('update_team') do
-        team = client.get_team(id: team_id)
-        expect(client.update_team(team: team)).to be_a(Team)
+        team = client.get_team(team_id)
+        expect(client.update_team(team)).to be_a(Team)
       end
     end
   end
@@ -47,7 +47,7 @@ describe Insightly::DSL::Teams do
   describe '#delete_team' do
     it 'returns a response with code 202' do
       VCR.use_cassette('delete_team') do
-        response = client.delete_team(id: team_id)
+        response = client.delete_team(team_id)
         expect(response.status).to eq(202)
       end
     end

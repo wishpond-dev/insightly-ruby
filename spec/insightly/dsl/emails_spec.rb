@@ -7,7 +7,7 @@ describe Insightly::DSL::Emails do
   describe '#get_email' do
     it 'returns an email' do
       VCR.use_cassette('get_email') do
-        expect(client.get_email(id: email_id)).to be_a(Email)
+        expect(client.get_email(email_id)).to be_a(Email)
       end
     end
   end
@@ -27,7 +27,7 @@ describe Insightly::DSL::Emails do
   describe '#get_email_comments' do
     it 'returns an array of comments' do
       VCR.use_cassette('get_email_comments') do
-        comments = client.get_email_comments(id: email_id)
+        comments = client.get_email_comments(email_id)
         expect(comments).to be_a(Array)
         expect(comments.first).to be_a(Comment)
       end
@@ -38,7 +38,7 @@ describe Insightly::DSL::Emails do
   describe '#create_email_comment' do
     it 'returns a response with code 201' do
       VCR.use_cassette('create_email_comment') do
-        response = client.create_email_comment(id: email_id, comment: {title: 'Sharknado'})
+        response = client.create_email_comment(email_id, {title: 'Sharknado'})
         expect(response.status).to eq(201)
       end
     end
@@ -48,7 +48,7 @@ describe Insightly::DSL::Emails do
   describe '#delete_email' do
     it 'returns a response with code 202' do
       VCR.use_cassette('delete_email') do
-        response = client.delete_email(id: email_id)
+        response = client.delete_email(email_id)
         expect(response.status).to eq(202)
       end
     end

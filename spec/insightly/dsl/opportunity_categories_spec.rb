@@ -7,7 +7,7 @@ describe Insightly::DSL::OpportunityCategories do
   describe '#get_opportunity_category' do
     it 'returns an opportunity category' do
       VCR.use_cassette('get_opportunity_category') do
-        expect(client.get_opportunity_category(id: opportunity_category_id)).to be_a(OpportunityCategory)
+        expect(client.get_opportunity_category(opportunity_category_id)).to be_a(OpportunityCategory)
       end
     end
   end
@@ -27,8 +27,8 @@ describe Insightly::DSL::OpportunityCategories do
   describe '#create_opportunity_category' do
     it 'creates and returns an opportunity category' do
       VCR.use_cassette('create_opportunity_category') do
-        opportunity_category = client.get_opportunity_category(id: opportunity_category_id)
-        expect(client.create_opportunity_category(category: opportunity_category)).to be_a(OpportunityCategory)
+        opportunity_category = client.get_opportunity_category(opportunity_category_id)
+        expect(client.create_opportunity_category(opportunity_category)).to be_a(OpportunityCategory)
       end
     end
   end
@@ -37,8 +37,8 @@ describe Insightly::DSL::OpportunityCategories do
   describe '#update_opportunity_category' do
     it 'updates and returns an opportunity category' do
       VCR.use_cassette('update_opportunity_category') do
-        opportunity_category = client.get_opportunity_category(id: opportunity_category_id)
-        expect(client.update_opportunity_category(category: opportunity_category)).to be_a(OpportunityCategory)
+        opportunity_category = client.get_opportunity_category(opportunity_category_id)
+        expect(client.update_opportunity_category(opportunity_category)).to be_a(OpportunityCategory)
       end
     end
   end
@@ -47,7 +47,7 @@ describe Insightly::DSL::OpportunityCategories do
   describe '#delete_opportunity_category' do
     it 'returns a response with code 202' do
       VCR.use_cassette('delete_opportunity_category') do
-        response = client.delete_opportunity_category(id: opportunity_category_id)
+        response = client.delete_opportunity_category(opportunity_category_id)
         expect(response.status).to eq(202)
       end
     end

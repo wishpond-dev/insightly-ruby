@@ -36,7 +36,9 @@ module Insightly
     # @raise [ClientError] If the response code is not in the success range.
     # @return [Faraday::Response] server response.
     def request(method, path, query = {}, headers = HEADERS)
-      raise ArgumentError, "Unsupported method #{method.inspect}. Only :get, :post, :put, :delete are allowed" unless REQUESTS.include?(method)
+      unless REQUESTS.include?(method)
+        raise ArgumentError, "Unsupported method #{method.inspect}. Only :get, :post, :put, :delete are allowed"
+      end
 
       payload = !query.empty? ? JSON.generate(query) : ''
       response = @connection.run_request(method, "#{URL}#{path}", payload, headers)

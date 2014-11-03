@@ -7,7 +7,7 @@ describe Insightly::DSL::FileCategories do
   describe '#get_file_category' do
     it 'returns a file category' do
       VCR.use_cassette('get_file_category') do
-        expect(client.get_file_category(id: file_category_id)).to be_a(FileCategory)
+        expect(client.get_file_category(file_category_id)).to be_a(FileCategory)
       end
     end
   end
@@ -27,8 +27,8 @@ describe Insightly::DSL::FileCategories do
   describe '#create_file_category' do
     it 'creates and returns a file category' do
       VCR.use_cassette('create_file_category') do
-        file_category = client.get_file_category(id: file_category_id)
-        expect(client.create_file_category(category: file_category)).to be_a(FileCategory)
+        file_category = client.get_file_category(file_category_id)
+        expect(client.create_file_category(file_category)).to be_a(FileCategory)
       end
     end
   end
@@ -37,8 +37,8 @@ describe Insightly::DSL::FileCategories do
   describe '#update_file_category' do
     it 'updates and returns a file category' do
       VCR.use_cassette('update_file_category') do
-        file_category = client.get_file_category(id: file_category_id)
-        expect(client.update_file_category(category: file_category)).to be_a(FileCategory)
+        file_category = client.get_file_category(file_category_id)
+        expect(client.update_file_category(file_category)).to be_a(FileCategory)
       end
     end
   end
@@ -47,7 +47,7 @@ describe Insightly::DSL::FileCategories do
   describe '#delete_file_category' do
     it 'returns a response with code 202' do
       VCR.use_cassette('delete_file_category') do
-        response = client.delete_file_category(id: file_category_id)
+        response = client.delete_file_category(file_category_id)
         expect(response.status).to eq(202)
       end
     end

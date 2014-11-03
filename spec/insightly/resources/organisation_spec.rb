@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Insightly::Resources::Organisation do
   subject(:organisation) do
     VCR.use_cassette('get_organisation') do
-      client.get_organisation(id: 39831139)
+      client.get_organisation(39831139)
     end
   end
 

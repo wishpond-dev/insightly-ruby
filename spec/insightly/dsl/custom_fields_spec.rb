@@ -7,7 +7,7 @@ describe Insightly::DSL::CustomFields do
   describe '#get_custom_field' do
     it 'returns a custom field' do
       VCR.use_cassette('get_custom_field') do
-        expect(client.get_custom_field(id: custom_field_id)).to be_a(CustomField)
+        expect(client.get_custom_field(custom_field_id)).to be_a(CustomField)
       end
     end
   end

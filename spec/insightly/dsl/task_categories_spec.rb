@@ -7,7 +7,7 @@ describe Insightly::DSL::TaskCategories do
   describe '#get_task_category' do
     it 'returns a task category' do
       VCR.use_cassette('get_task_category') do
-        expect(client.get_task_category(id: task_category_id)).to be_a(TaskCategory)
+        expect(client.get_task_category(task_category_id)).to be_a(TaskCategory)
       end
     end
   end
@@ -27,8 +27,8 @@ describe Insightly::DSL::TaskCategories do
   describe '#create_task_category' do
     it 'creates and returns task_category' do
       VCR.use_cassette('create_task_category') do
-        task_category = client.get_task_category(id: task_category_id)
-        expect(client.create_task_category(category: task_category)).to be_a(TaskCategory)
+        task_category = client.get_task_category(task_category_id)
+        expect(client.create_task_category(task_category)).to be_a(TaskCategory)
       end
     end
   end
@@ -37,8 +37,8 @@ describe Insightly::DSL::TaskCategories do
   describe '#update_task_category' do
     it 'updates and returns task_category' do
       VCR.use_cassette('update_task_category') do
-        task_category = client.get_task_category(id: task_category_id)
-        expect(client.update_task_category(category: task_category)).to be_a(TaskCategory)
+        task_category = client.get_task_category(task_category_id)
+        expect(client.update_task_category(task_category)).to be_a(TaskCategory)
       end
     end
   end
@@ -47,7 +47,7 @@ describe Insightly::DSL::TaskCategories do
   describe '#delete_task_category' do
     it 'returns a response with code 202' do
       VCR.use_cassette('delete_task_category') do
-        response = client.delete_task_category(id: task_category_id)
+        response = client.delete_task_category(task_category_id)
         expect(response.status).to eq(202)
       end
     end

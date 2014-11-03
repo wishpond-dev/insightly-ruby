@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Insightly::Resources::Pipeline do
   subject(:pipeline) do
     VCR.use_cassette('get_pipeline') do
-      client.get_pipeline(id: 124170)
+      client.get_pipeline(124170)
     end
   end
 

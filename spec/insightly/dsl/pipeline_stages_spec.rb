@@ -7,7 +7,7 @@ describe Insightly::DSL::PipelineStages do
   describe '#get_pipeline_stage' do
     it 'returns a pipeline stage' do
       VCR.use_cassette('get_pipeline_stage') do
-        expect(client.get_pipeline_stage(id: pipeline_stage_id)).to be_a(PipelineStage)
+        expect(client.get_pipeline_stage(pipeline_stage_id)).to be_a(PipelineStage)
       end
     end
   end

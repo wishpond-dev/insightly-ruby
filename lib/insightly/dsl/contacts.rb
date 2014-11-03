@@ -7,7 +7,7 @@ module Insightly
     # @param [String, Fixnum] id The ID of the contact.
     # @raise [ArgumentError] If the method arguments are blank.
     # @return [Insightly::Resources::Contact, nil].
-    def get_contact(id:)
+    def get_contact(id)
       raise ArgumentError, "ID cannot be blank" if id.blank?
       Resources::Contact.parse(request(:get, "Contacts/#{id}"))
     end
@@ -17,7 +17,7 @@ module Insightly
     # @param [id:] id of the contact.
     # @raise [ArgumentError] If the method arguments are blank.
     # @return [Array, nil].
-    def get_contact_emails(id:)
+    def get_contact_emails(id)
       raise ArgumentError, "ID cannot be blank" if id.blank?
       Resources::Email.parse(request(:get, "Contacts/#{id}/Emails"))
     end
@@ -27,7 +27,7 @@ module Insightly
     # @param [String, Fixnum] id The ID of the contact.
     # @raise [ArgumentError] If the method arguments are blank.
     # @return [Faraday::Response].
-    def get_contact_image(id:)
+    def get_contact_image(id)
       raise ArgumentError, "ID cannot be blank" if id.blank?
       request(:get, "Contacts/#{id}/Image")
     end
@@ -37,7 +37,7 @@ module Insightly
     # @param [String, Fixnum] id The ID of the contact.
     # @raise [ArgumentError] If the method arguments are blank.
     # @return [Array, nil].
-    def get_contact_notes(id:)
+    def get_contact_notes(id)
       raise ArgumentError, "ID cannot be blank" if id.blank?
       Resources::Note.parse(request(:get, "Contacts/#{id}/Notes"))
     end
@@ -47,7 +47,7 @@ module Insightly
     # @param [String, Fixnum] id The ID of the contact.
     # @raise [ArgumentError] If the method arguments are blank.
     # @return [Array, nil].
-    def get_contact_tasks(id:)
+    def get_contact_tasks(id)
       raise ArgumentError, "ID cannot be blank" if id.blank?
       Resources::Task.parse(request(:get, "Contacts/#{id}/Tasks"))
     end
@@ -58,8 +58,8 @@ module Insightly
     # @param [String] email The email address of the contact to return (optional).
     # @param [String] tag The tag that has been applied to contacts (optional).
     # @return [Array, nil].
-    def get_contacts(ids: [], email: '', tag: '')
-      url = Utils::UrlHelper.build_url(path: "Contacts", params: {ids: ids.join(','), email: email, tag: tag})
+    def get_contacts(ids = [], email = '', tag = '')
+      url = Utils::UrlHelper.build_url("Contacts", {ids: ids.join(','), email: email, tag: tag})
       Resources::Contact.parse(request(:get, url))
     end
 
@@ -68,7 +68,7 @@ module Insightly
     # @param [Hash] contact The contact to create.
     # @raise [ArgumentError] If the method arguments are blank.
     # @return [Insightly::Resources::Contact, nil].
-    def create_contact(contact:)
+    def create_contact(contact)
       raise ArgumentError, "Contact cannot be blank" if contact.blank?
       Resources::Contact.parse(request(:post, "Contacts", contact))
     end
@@ -79,7 +79,7 @@ module Insightly
     # @param [String] filename The name of image file to be attached to the contact.
     # @raise [ArgumentError] If the method arguments are blank.
     # @return [Faraday::Response].
-    def create_contact_image(id:, filename:)
+    def create_contact_image(id, filename)
       raise ArgumentError, "ID cannot be blank" if id.blank?
       raise ArgumentError, "Filename cannot be blank" if filename.blank?
       request(:post, "Contacts/#{id}/Image/#{filename}")
@@ -90,7 +90,7 @@ module Insightly
     # @param [Hash] contact The contact to update.
     # @raise [ArgumentError] If the method arguments are blank.
     # @return [Insightly::Resources::Contact, nil].
-    def update_contact(contact:)
+    def update_contact(contact)
       raise ArgumentError, "Contact cannot be blank" if contact.blank?
       Resources::Contact.parse(request(:put, "Contacts", contact))
     end
@@ -101,7 +101,7 @@ module Insightly
     # @param [String] filename The name of image file to be attached to the contact.
     # @raise [ArgumentError] If the method arguments are blank.
     # @return [Faraday::Response].
-    def update_contact_image(id:, filename:)
+    def update_contact_image(id, filename)
       raise ArgumentError, "ID cannot be blank" if id.blank?
       raise ArgumentError, "Filename cannot be blank" if filename.blank?
       request(:put, "Contacts/#{id}/Image/#{filename}")
@@ -112,7 +112,7 @@ module Insightly
     # @param [String, Fixnum] id The ID of the contact to delete.
     # @raise [ArgumentError] If the method arguments are blank.
     # @return [Faraday::Response].
-    def delete_contact(id:)
+    def delete_contact(id)
       raise ArgumentError, "ID cannot be blank" if id.blank?
       request(:delete, "Contacts/#{id}")
     end
@@ -122,7 +122,7 @@ module Insightly
     # @param [String, Fixnum] id The ID of the contact with the image to delete.
     # @raise [ArgumentError] If the method arguments are blank.
     # @return [Faraday::Response].
-    def delete_contact_image(id:)
+    def delete_contact_image(id)
       raise ArgumentError, "ID cannot be blank" if id.blank?
       request(:delete, "Contacts/#{id}/Image")
     end

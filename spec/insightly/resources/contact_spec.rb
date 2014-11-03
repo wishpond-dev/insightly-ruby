@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Insightly::Resources::Contact do
   subject(:contact) do
     VCR.use_cassette('get_contact') do
-      client.get_contact(id: 70653019)
+      client.get_contact(70653019)
     end
   end
 

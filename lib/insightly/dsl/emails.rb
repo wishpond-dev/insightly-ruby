@@ -7,7 +7,7 @@ module Insightly
     # @param [String, Fixnum] id The ID of the email.
     # @raise [ArgumentError] If the method arguments are blank.
     # @return [Insightly::Resources::Email, nil]
-    def get_email(id:)
+    def get_email(id)
       raise ArgumentError, "ID cannot be blank" if id.blank?
       Resources::Email.parse(request(:get, "Emails/#{id}"))
     end
@@ -17,7 +17,7 @@ module Insightly
     # @param [String, Fixnum] id The ID of the email.
     # @raise [ArgumentError] If the method arguments are blank.
     # @return [Array, nil].
-    def get_email_comments(id:)
+    def get_email_comments(id)
       raise ArgumentError, "ID cannot be blank" if id.blank?
       Resources::Comment.parse(request(:get, "Emails/#{id}/Comments"))
     end
@@ -27,8 +27,8 @@ module Insightly
     # @param [Array] ids The list of email IDs (optional).
     # @param [String] tag Emails tagged with this tag (optional).
     # @return [Array, nil].
-    def get_emails(ids: [], tag: '')
-      url = Utils::UrlHelper.build_url(path: "Emails", params: {ids: ids.join(','), tag: tag})
+    def get_emails(ids = [], tag = '')
+      url = Utils::UrlHelper.build_url("Emails", {ids: ids.join(','), tag: tag})
       Resources::Email.parse(request(:get, url))
     end
 
@@ -38,7 +38,7 @@ module Insightly
     # @param [Hash] comment The comment to create.
     # @raise [ArgumentError] If the method arguments are blank.
     # @return [Faraday::Response].
-    def create_email_comment(id:, comment:)
+    def create_email_comment(id, comment)
       raise ArgumentError, "ID cannot be blank" if id.blank?
       raise ArgumentError, "Comment cannot be blank" if comment.blank?
       request(:post, "Emails/#{id}/Comments", comment)
@@ -49,7 +49,7 @@ module Insightly
     # @param [String, Fixnum] id The ID of the email to delete.
     # @raise [ArgumentError] If the method arguments are blank.
     # @return [Faraday::Response].
-    def delete_email(id:)
+    def delete_email(id)
       raise ArgumentError, "ID cannot be blank" if id.blank?
       request(:delete, "Emails/#{id}")
     end

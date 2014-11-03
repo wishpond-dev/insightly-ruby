@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Insightly::Resources::TaskCategory do
   subject(:task_category) do
     VCR.use_cassette('get_task_category') do
-      client.get_task_category(id: 1947437)
+      client.get_task_category(1947437)
     end
   end
 

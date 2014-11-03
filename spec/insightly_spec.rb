@@ -10,6 +10,6 @@ describe Insightly do
   end
 
   it 'provides shortcut for instantiating Client' do
-    expect(Insightly.new).to be_a(Insightly::Client)
+    expect(Insightly::Client.new(insightly_api_key)).to be_a(Insightly::Client)
   end
 end

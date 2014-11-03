@@ -7,7 +7,7 @@ describe Insightly::DSL::Projects do
   describe '#get_project' do
     it 'returns a project' do
       VCR.use_cassette('get_project') do
-        expect(client.get_project(id: project_id)).to be_a(Project)
+        expect(client.get_project(project_id)).to be_a(Project)
       end
     end
   end
@@ -16,7 +16,7 @@ describe Insightly::DSL::Projects do
   describe '#get_project_emails' do
     it 'returns project emails' do
       VCR.use_cassette('get_project_emails') do
-        response = client.get_project_emails(id: project_id)
+        response = client.get_project_emails(project_id)
         expect(response).to be_a(Array)
         expect(response.first).to be_a(Email)
       end
@@ -27,7 +27,7 @@ describe Insightly::DSL::Projects do
   # describe '#get_project_image' do
   #   it 'returns project image' do
   #     VCR.use_cassette('get_project_image') do
-  #       response = client.get_project_image(id: project_id)
+  #       response = client.get_project_image(project_id)
   #       # expect(response.status).to eq(200)
   #       # TODO - Insightly server error with default project image they should fix this.
   #     end
@@ -38,7 +38,7 @@ describe Insightly::DSL::Projects do
   describe '#get_project_notes' do
     it 'returns project notes' do
       VCR.use_cassette('get_project_notes') do
-        response = client.get_project_notes(id: project_id)
+        response = client.get_project_notes(project_id)
         expect(response).to be_a(Array)
         expect(response.first).to be_a(Note)
       end
@@ -49,7 +49,7 @@ describe Insightly::DSL::Projects do
   describe '#get_project_tasks' do
     it 'returns project tasks' do
       VCR.use_cassette('get_project_tasks') do
-        response = client.get_project_tasks(id: project_id)
+        response = client.get_project_tasks(project_id)
         expect(response).to be_a(Array)
         expect(response.first).to be_a(Task)
       end
@@ -71,8 +71,8 @@ describe Insightly::DSL::Projects do
   describe '#create_project' do
     it 'creates and returns a project' do
       VCR.use_cassette('create_project') do
-        project = client.get_project(id: project_id)
-        expect(client.create_project(project: project)).to be_a(Project)
+        project = client.get_project(project_id)
+        expect(client.create_project(project)).to be_a(Project)
       end
     end
   end
@@ -81,7 +81,7 @@ describe Insightly::DSL::Projects do
   # describe '#create_project_image' do
   #   it 'returns a response with code 201' do
   #     VCR.use_cassette('create_project_image') do
-  #       response = client.create_project_image(id: project_id, filename: '1.jpg')
+  #       response = client.create_project_image(project_id, filename: '1.jpg')
   #       # expect(response.status).to eq(201)
   #       # TODO - Can't add image. Not sure why.
   #     end
@@ -92,8 +92,8 @@ describe Insightly::DSL::Projects do
   describe '#update_project' do
     it 'updates and returns a project' do
       VCR.use_cassette('update_project') do
-        project = client.get_project(id: project_id)
-        expect(client.update_project(project: project)).to be_a(Project)
+        project = client.get_project(project_id)
+        expect(client.update_project(project)).to be_a(Project)
       end
     end
   end
@@ -102,7 +102,7 @@ describe Insightly::DSL::Projects do
   # describe '#update_project_image' do
   #   it 'returns a response with code 201' do
   #     VCR.use_cassette('update_project_image') do
-  #       response = client.update_project_image(id: project_id, filename: '1.jpg')
+  #       response = client.update_project_image(project_id, filename: '1.jpg')
   #       # expect(response.status).to eq(201)
   #       # TODO - Can't update image. Not sure why.
   #     end
@@ -113,7 +113,7 @@ describe Insightly::DSL::Projects do
   describe '#delete_project' do
     it 'returns a response with code 202' do
       VCR.use_cassette('delete_project') do
-        response = client.delete_project(id: project_id)
+        response = client.delete_project(project_id)
         expect(response.status).to eq(202)
       end
     end
@@ -123,7 +123,7 @@ describe Insightly::DSL::Projects do
   describe '#delete_project_image' do
     it 'returns a response with code 202' do
       VCR.use_cassette('delete_project_image') do
-        response = client.delete_project_image(id: project_id)
+        response = client.delete_project_image(project_id)
         expect(response.status).to eq(202)
       end
     end

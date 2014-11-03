@@ -7,7 +7,7 @@ describe Insightly::DSL::ProjectCategories do
   describe '#get_project_category' do
     it 'returns an project_category' do
       VCR.use_cassette('get_project_category') do
-        expect(client.get_project_category(id: project_category_id)).to be_a(ProjectCategory)
+        expect(client.get_project_category(project_category_id)).to be_a(ProjectCategory)
       end
     end
   end
@@ -27,8 +27,8 @@ describe Insightly::DSL::ProjectCategories do
   describe '#create_project_category' do
     it 'creates and returns a project_category' do
       VCR.use_cassette('create_project_category') do
-        project_category = client.get_project_category(id: project_category_id)
-        expect(client.create_project_category(category: project_category)).to be_a(ProjectCategory)
+        project_category = client.get_project_category(project_category_id)
+        expect(client.create_project_category(project_category)).to be_a(ProjectCategory)
       end
     end
   end
@@ -37,8 +37,8 @@ describe Insightly::DSL::ProjectCategories do
   describe '#update_project_category' do
     it 'updates and returns a project_category' do
       VCR.use_cassette('update_project_category') do
-        project_category = client.get_project_category(id: project_category_id)
-        expect(client.update_project_category(category: project_category)).to be_a(ProjectCategory)
+        project_category = client.get_project_category(project_category_id)
+        expect(client.update_project_category(project_category)).to be_a(ProjectCategory)
       end
     end
   end
@@ -47,7 +47,7 @@ describe Insightly::DSL::ProjectCategories do
   describe '#delete_project_category' do
     it 'returns a response with code 202' do
       VCR.use_cassette('delete_project_category') do
-        response = client.delete_project_category(id: project_category_id)
+        response = client.delete_project_category(project_category_id)
         expect(response.status).to eq(202)
       end
     end

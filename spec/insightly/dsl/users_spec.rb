@@ -7,7 +7,7 @@ describe Insightly::DSL::Users do
   describe '#get_user' do
     it 'returns a user' do
       VCR.use_cassette('get_user') do
-        expect(client.get_user(id: user_id)).to be_a(User)
+        expect(client.get_user(user_id)).to be_a(User)
       end
     end
   end

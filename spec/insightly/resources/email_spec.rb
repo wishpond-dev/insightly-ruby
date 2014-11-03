@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Insightly::Resources::Email do
   subject(:email) do
     VCR.use_cassette('get_email') do
-      client.get_email(id: 17683283)
+      client.get_email(17683283)
     end
   end
 
