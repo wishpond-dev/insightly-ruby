@@ -58,7 +58,7 @@ module Insightly
     # @param [String] email The email address of the contact to return (optional).
     # @param [String] tag The tag that has been applied to contacts (optional).
     # @return [Array, nil].
-    def get_contacts(params)
+    def get_contacts(params = {})
       ids   = params[:ids] || []
       tag   = params[:tag] || ''
       email = params[:email] || ''

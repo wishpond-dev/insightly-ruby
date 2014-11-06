@@ -56,7 +56,7 @@ module Insightly
     # @param [String] domain The email domain (optional).
     # @param [String] tag The tag an organisation has been tagged with (optional).
     # @return [Array, nil].
-    def get_organisations(params)
+    def get_organisations(params = {})
       ids    = params[:ids] || []
       tag    = params[:tag] || ''
       domain = params[:domain] || ''

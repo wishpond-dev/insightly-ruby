@@ -65,7 +65,7 @@ module Insightly
     # @param [Array] ids IDs of opportunities (optional).
     # @param [String] tag The tag that has been applied to an opportunity (optional).
     # @return [Array, nil].
-    def get_opportunities(params)
+    def get_opportunities(params = {})
       ids = params[:ids] || []
       tag = params[:tag] || ''
       url = Utils::UrlHelper.build_url("Opportunities", {ids: ids.join(','), tag: tag})
