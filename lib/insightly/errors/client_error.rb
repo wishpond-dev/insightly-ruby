@@ -2,7 +2,7 @@ module Insightly
   module Errors
     class ClientError < StandardError
       def initialize(response)
-        @response = response
+        super(response)
       end
     end
   end

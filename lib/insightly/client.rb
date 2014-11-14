@@ -44,12 +44,18 @@ module Insightly
       response = @connection.run_request(method, "#{URL}#{path}", payload, headers)
 
       case response.status.to_i
-        when 200..299
-          return response
-        when 404
-          raise ResourceNotFoundError.new(response: response)
-        else
-          raise ClientError.new(response: response)
+      when 200..299
+        return response
+      when 404
+        raise ResourceNotFoundError.new(response.status)
+      else
+        message =
+          if response.body.nil? || response.body.empty?
+            response.status
+          else
+            response.body
+          end
+        raise ClientError.new(message)
       end
     end
   end
