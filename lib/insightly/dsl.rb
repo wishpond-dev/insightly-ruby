@@ -14,6 +14,7 @@ require 'insightly/dsl/emails'
 require 'insightly/dsl/events'
 require 'insightly/dsl/file_attachments'
 require 'insightly/dsl/file_categories'
+require 'insightly/dsl/leads'
 require 'insightly/dsl/notes'
 require 'insightly/dsl/opportunities'
 require 'insightly/dsl/opportunity_categories'
@@ -43,6 +44,7 @@ module Insightly
     include Events
     include FileAttachments
     include FileCategories
+    include Leads
     include Notes
     include Opportunities
     include OpportunityCategories
